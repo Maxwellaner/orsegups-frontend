@@ -1,7 +1,7 @@
-import { IContactValidation } from "../../components/form/interface";
 import IContactService from "./IContactService";
 import axios from "../../axios/axios";
 import { normalizePhoneData } from "../../utils/normalizePhoneData";
+import { IContactValidation } from "../../components/contactForm/interface";
 
 export default class ContactService implements IContactService {
   async create(contact: IContactValidation): Promise<IContactValidation | string> {

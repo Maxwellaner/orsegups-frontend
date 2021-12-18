@@ -1,4 +1,4 @@
-import { IContactValidation } from "../../components/form/interface";
+import { IContactValidation } from "../../components/contactForm/interface";
 
 export default interface IContactService {
   create(contact: IContactValidation): Promise<IContactValidation | string>;
