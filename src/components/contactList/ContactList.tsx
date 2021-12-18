@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ContactService from "../../domain/contact/ContactService";
 import { ContactCard } from "../contactCard/ContactCard";
 import { Container } from "../container/Container";
-import { IContactValidation } from "../form/interface";
+import { IContactValidation } from "../contactForm/interface";
 import styles from './ContactList.module.css';
 
 export const ContactList = () => {

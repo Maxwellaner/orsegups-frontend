@@ -1,5 +1,5 @@
 import { maskPhone } from '../../utils/masks';
-import { IContactValidation } from '../form/interface';
+import { IContactValidation } from '../contactForm/interface';
 import styles from './ContactCard.module.css';
 import { Link } from 'react-router-dom';
 
