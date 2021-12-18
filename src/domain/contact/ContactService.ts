@@ -5,9 +5,8 @@ import { IContactValidation } from "../../components/contactForm/interface";
 
 export default class ContactService implements IContactService {
   async create(contact: IContactValidation): Promise<IContactValidation | string> {
-    contact.phone = normalizePhoneData(contact.phone);
     try {
-      const response = await axios.post('/contacts/create', contact);
+      const response = await axios.post('/contacts/create', this.normalizeData(contact));
       return response.data;
     } catch(error: any) {
       return error.response.data.message;
@@ -15,7 +14,7 @@ export default class ContactService implements IContactService {
   }
   async put(id: number, contact: IContactValidation): Promise<IContactValidation | string> {
     try {
-      const response = await axios.put(`/contacts/${id}`, contact);
+      const response = await axios.put(`/contacts/${id}`, this.normalizeData(contact));
       return response.data;
     } catch(error: any) {
       return error.response.data.message;
@@ -36,5 +35,9 @@ export default class ContactService implements IContactService {
     } catch(error: any) {
       return error.response.data.message;
     }
+  }
+  private normalizeData(contact: IContactValidation): IContactValidation {
+    contact.phone = normalizePhoneData(contact.phone);
+    return contact;
   }
 }
