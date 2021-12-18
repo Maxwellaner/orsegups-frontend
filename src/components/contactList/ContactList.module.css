@@ -1,0 +1,13 @@
+.cardList {
+  display: -ms-grid;
+  display: grid;
+
+  grid-template-columns: 500px 500px;
+  gap: 15px
+}
+
+@media (max-width: 1200px) {
+  .cardList {
+    grid-template-columns: 400px;
+  }
+}

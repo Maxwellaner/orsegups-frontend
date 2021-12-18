@@ -1,0 +1,45 @@
+.containerForm {
+  min-width: 500px;
+  text-align: center;
+}
+
+.containerForm h4 {
+  margin-bottom: 1rem;
+}
+
+.containerForm form {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerForm form input, select, button {
+  padding: .7rem;
+  font-size: 1rem;
+
+  border-radius: .4rem;
+  border-width: 0;
+
+  
+  box-shadow: 0 0 0 1px #04388E;
+  outline: none;
+}
+
+.containerForm form select {
+  background-color: transparent;
+}
+
+.containerForm form button {
+  border: none;
+  background-color: #04388E;
+  color: #FFF11C;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.error {
+  color: red;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1rem;
+  margin-top: 5px;
+}
