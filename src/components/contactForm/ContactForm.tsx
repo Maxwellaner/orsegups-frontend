@@ -94,26 +94,20 @@ export const ContactForm = () => {
             <form onSubmit={handleSubmit}>
               <input
                 placeholder="Nome"
-                type="name"
+                type="text"
                 name="name"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.name}
               />
               <span className={styles.error}>{errors.name && touched.name && errors.name}</span>
-              <input
-                onChange={e => {
-                  values.phone = '';
-                  setInitialValues({
-                    ...values as IContactValidation,
-                    phone: maskPhone(e.target.value)
-                  })
-                }}   
+              <input  
                 placeholder="Telefone"
-                type="phone"
+                type="text"
                 name="phone"
                 onBlur={handleBlur}
-                value={(values.phone ? maskPhone(values.phone) : initialValues?.phone)}
+                onChange={handleChange}
+                value={values.phone = maskPhone(values.phone)}
               />
               <span className={styles.error}>{errors.phone && touched.phone && errors.phone}</span>
               <input
@@ -138,7 +132,7 @@ export const ContactForm = () => {
               </select>
               <span className={styles.error}>{errors.contactType && touched.contactType && errors.contactType}</span>
               <button type="submit" disabled={isSubmitting}>
-                Cadastrar
+                { contact ? 'Salvar' : 'Cadastrar' }
               </button>
             </form>
           )}
