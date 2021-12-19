@@ -20,10 +20,13 @@ export const ContactList = () => {
 
   return (
     <Container>
-      <div className={styles.cardList}>
-        {contacts?.map(contact => (
-          <ContactCard key={contact.id} contact={contact} />
-        ))}
+      <div className={styles.content}>
+        <h4>Lista de Contatos</h4>
+        <div className={styles.cardList}>
+          {contacts?.map(contact => (
+            <ContactCard key={contact.id} contact={contact} />
+          ))}
+        </div>
       </div>
     </Container>
   );

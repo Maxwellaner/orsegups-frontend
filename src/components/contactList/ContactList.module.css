@@ -1,6 +1,15 @@
+.content {
+  text-align: center;
+}
+
+.content h4 {
+  margin-bottom: 1rem;
+}
+
 .cardList {
   display: -ms-grid;
   display: grid;
+  text-align: left;
 
   grid-template-columns: 500px 500px;
   gap: 15px
