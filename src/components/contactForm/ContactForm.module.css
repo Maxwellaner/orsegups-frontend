@@ -3,8 +3,24 @@
   text-align: center;
 }
 
+.headerForm {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+.headerForm img {
+  width: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.headerForm img:hover {
+  transform: scale(1.08);
+}
+
 .containerForm h4 {
-  margin-bottom: 1rem;
+  margin-top: 7px;
 }
 
 .containerForm form {

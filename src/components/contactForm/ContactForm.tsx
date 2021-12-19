@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { maskPhone } from "../../utils/masks";
 import validate from '../../validations/contact/contact.schema';
 import { useNavigate } from "react-router-dom";
-import { getContact } from "../../domain/contact-form/functions";
+import { deleteContact, getContact } from "../../domain/contact-form/functions";
 import { failAlert, successAlert } from "../alerts/alerts";
 
 const getInitialValues = (values?: IContactValidation | null) => {
@@ -62,10 +62,31 @@ export const ContactForm = ({ onSubmit }: ContactFormProps) => {
         });
   }
 
+  const handleDelete = async () => {
+    const response = await deleteContact(Number(query.get("id")));
+    if (typeof response === 'string') {
+      failAlert({ text: response });
+    } else {
+      successAlert({ text: `Contato deletado com sucesso!` })
+        .then(() => {
+          navigate('/contacts');
+        });
+    }
+  }
+
   return (
     <Container>
       <div className={styles.containerForm}>
-        <h4>{contact ? 'Editar contato' : 'Contate-nos'}</h4>
+        <div className={styles.headerForm}>
+          <h4>{contact ? 'Editar contato' : 'Contate-nos'}</h4>
+          {contact && (
+            <img 
+              onClick={handleDelete}
+              src="/images/delete-icon.svg" 
+              alt="Delete contact" 
+            />
+          )}
+        </div>
         <Formik
           initialValues={getInitialValues(initialValues)}
           onSubmit={(values) => onSubmit(values, afterSubmit)}

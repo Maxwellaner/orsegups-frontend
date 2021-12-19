@@ -42,3 +42,9 @@ export async function onSubmitFormContact(values: IContactValidation, callback: 
     callback();
   }
 }
+
+export async function deleteContact(id: number): Promise<void | string> {
+  const serviceRequest = new ContactRequest();
+  const service = new ContactService(serviceRequest);
+  return await service.delete(id);
+}
