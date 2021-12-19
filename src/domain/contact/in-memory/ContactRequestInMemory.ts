@@ -5,6 +5,10 @@ export default class ContactRequestInMemory implements IContactRequest {
   private contacts: IContactValidation[] = [];
   
   create(contact: IContactValidation): Promise<string | IContactValidation> {
+    const exists = this.contacts.find(item => {
+      return contact.email === item.email;
+    });
+    if (exists) return Promise.resolve('Este e-mail já existe! Confira na lista de contatos');
     Object.assign(contact, {
       id: Math.random() * 100
     });
