@@ -18,6 +18,9 @@ export default class ContactService implements IContactService {
   async getAll(): Promise<IContactValidation[] | []> {
     return this.requestService.getAll();
   }
+  async delete(id: number): Promise<void | string> {
+    return this.requestService.delete(id);
+  }
   private normalizeData(contact: IContactValidation): IContactValidation {
     contact.phone = normalizePhoneData(contact.phone);
     return contact;

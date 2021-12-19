@@ -5,4 +5,5 @@ export default interface IContactService {
   get(id: number): Promise<IContactValidation | string>;
   getAll(): Promise<IContactValidation[] | []>;
   put(id: number, contact: IContactValidation): Promise<IContactValidation | string>;
+  delete(id: number): Promise<void | string>; 
 }
