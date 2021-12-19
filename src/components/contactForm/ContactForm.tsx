@@ -45,7 +45,6 @@ export const ContactForm = ({ onSubmit }: ContactFormProps) => {
   }, [window.location.search])
 
   useEffect(() => {
-    console.log('contact', contact);
     setInitialValues(contact);
   }, [contact]);
 
