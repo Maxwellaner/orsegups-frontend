@@ -7,13 +7,13 @@ export const Sidebar = () =>
     <nav>
       <ul>
         <li>
-          <Link to="/" onClick={window.location.reload}>
+          <Link to="/">
             Cadastrar contato
           </Link>
         </li>
         <li>
           <Link to="/contacts">
-            Lista de contatos
+            Ver contatos
           </Link>
         </li>
       </ul>
