@@ -9,10 +9,6 @@ type CardProps = {
 
 export const ContactCard = ({ contact }: CardProps) => {
   const { name, email, phone, contactType } = contact;
-  
-  const handleClick = (id: number) => {
-    console.log('click', id);
-  }
 
   return (
     <Link to={`/contact/edit?id=${contact.id}`} className={styles.link}>
