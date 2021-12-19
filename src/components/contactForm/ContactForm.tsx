@@ -4,11 +4,10 @@ import styles from './ContactForm.module.css';
 import { IContactValidation } from "./interface";
 import { useEffect, useState } from "react";
 import { maskPhone } from "../../utils/masks";
-import ContactService from "../../domain/contact/ContactService";
-import { failAlert, successAlert } from "../alerts/alerts";
-import { useQuery } from "../hooks/hooks";
 import validate from '../../validations/contact/contact.schema';
 import { useNavigate } from "react-router-dom";
+import { getContact } from "../../domain/contact-form/functions";
+import { successAlert } from "../alerts/alerts";
 
 const getInitialValues = (values?: IContactValidation | null) => {
   return {
@@ -31,18 +30,12 @@ export const ContactForm = ({ onSubmit }: ContactFormProps) => {
   const query = new URLSearchParams(window.location.search);
 
   useEffect(() => {
-    async function getContact() {
-      const param = query.get("id");
-      if (param) {
-        const service = new ContactService();
-        const response = await service.get(Number(param));
-        
-        if (typeof response === 'string') failAlert({text: response as string});
-        setContact(response as IContactValidation);
-      }
+    async function loadContact() {
+      const response = await getContact(Number(query.get("id")));
+      setContact(response as IContactValidation);
     }
-
-    getContact();
+    
+    loadContact();
   }, [])
 
   useEffect(() => {

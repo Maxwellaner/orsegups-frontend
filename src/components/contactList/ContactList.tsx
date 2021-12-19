@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import ContactService from "../../domain/contact/ContactService";
 import { ContactCard } from "../contactCard/ContactCard";
 import { Container } from "../container/Container";
 import { IContactValidation } from "../contactForm/interface";
 import styles from './ContactList.module.css';
+import { getAllContacts } from "../../domain/contact-form/functions";
 
 export const ContactList = () => {
   const [contacts, setContacts] = useState<IContactValidation[] | []>();
   
   useEffect(() => {
     async function getContacts() {
-      const service = new ContactService();
-      const response = await service.getAll();
+      const response = await getAllContacts();
       setContacts(response);
     }
 
