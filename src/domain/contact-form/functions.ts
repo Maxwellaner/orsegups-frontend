@@ -3,7 +3,7 @@ import { IContactValidation } from "../../components/contactForm/interface";
 import ContactRequest from "../contact/ContactRequest";
 import ContactService from "../contact/ContactService";
 
-export async function getContact(id: number): Promise<IContactValidation | string | null> {
+export async function getContact(id: string | null): Promise<IContactValidation | string | null> {
   if (id) {
     const serviceRequest = new ContactRequest();
     const service = new ContactService(serviceRequest);

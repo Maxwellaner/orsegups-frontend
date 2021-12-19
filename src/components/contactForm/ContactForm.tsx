@@ -7,7 +7,7 @@ import { maskPhone } from "../../utils/masks";
 import validate from '../../validations/contact/contact.schema';
 import { useNavigate } from "react-router-dom";
 import { getContact } from "../../domain/contact-form/functions";
-import { successAlert } from "../alerts/alerts";
+import { failAlert, successAlert } from "../alerts/alerts";
 
 const getInitialValues = (values?: IContactValidation | null) => {
   return {
@@ -29,16 +29,23 @@ export const ContactForm = ({ onSubmit }: ContactFormProps) => {
   const navigate = useNavigate();
   const query = new URLSearchParams(window.location.search);
 
-  useEffect(() => {
-    async function loadContact() {
-      const response = await getContact(Number(query.get("id")));
-      setContact(response as IContactValidation);
-    }
-    
+  async function loadContact() {
+    const response = await getContact(query.get("id"));
+    if (response === null) setContact(null);
+    if (typeof response === 'string') failAlert({ text: response });
+    if (typeof response !== 'string' && response !== null) setContact(response as IContactValidation);
+  }
+
+  useEffect(() => {  
     loadContact();
   }, [])
 
   useEffect(() => {
+    loadContact();
+  }, [window.location.search])
+
+  useEffect(() => {
+    console.log('contact', contact);
     setInitialValues(contact);
   }, [contact]);
 
