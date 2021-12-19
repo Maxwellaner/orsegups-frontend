@@ -1,28 +1,29 @@
 import IContactRequest from '../../../src/domain/contact/IContactRequest';
 import ContactService from '../../../src/domain/contact/ContactService';
-import ContactRequestInMemory from '../../../src/domain/contact/in-memory/ContactRequestInMemory';
+import ContactRequest from '../../../src/domain/contact/ContactRequest';
 import { IContactValidation } from '../../../src/components/contactForm/interface';
+import faker from 'faker';
 
-describe("Unit - Create service", () => {
-  let mockRequest: IContactRequest;
+describe("Integration - Create contact service", () => {
+  let request: IContactRequest;
   let service: ContactService;
 
   const contactData: IContactValidation = {
-    name: 'Unit create',
-    contactType: 'familiar',
-    email: 'unit-create@gmail.com',
+    name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    contactType: 'friend',
+    email: faker.internet.email(),
     phone: '53991039232'
   }
 
   beforeAll(() => {
-    mockRequest = new ContactRequestInMemory();
-    service = new ContactService(mockRequest);
+    request = new ContactRequest();
+    service = new ContactService(request);
   });
 
   it("should be able to create a contact", async () => {
     const contact = await service.create(contactData) as IContactValidation;
     expect(contact).toHaveProperty("id");
-    expect(contact.name).toEqual('Unit create');
+    expect(contact.name).toEqual(contactData.name);
   });
 
   it("should not be able to create an existing contact", async () => {
