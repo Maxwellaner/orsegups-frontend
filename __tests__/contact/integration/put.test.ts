@@ -23,6 +23,18 @@ describe("Integration - Put contact", () => {
     contact = await service.create(contactData) as IContactValidation;
   });
 
+  it("should be able to update a contact", async () => {
+    const newName = 'João das Neves';
+    const payload = {
+      name: newName,
+      email: contact.email,
+      phone: contact.phone,
+      contactType: contact.contactType
+    }
+    const contactUpdated = await service.put(Number(contact?.id), payload) as IContactValidation;
+    expect(contactUpdated?.name).toEqual(newName);
+  });
+
   it("should not be able to update a contact that not exists", async () => {
     const response = await service.put(100000, contactData) as string;
     expect(response).toEqual('Este contato não existe!');
