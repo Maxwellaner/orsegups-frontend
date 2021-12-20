@@ -17,7 +17,7 @@ describe("Unit - Put contact", () => {
     contact = await service.create({
       name: 'Unit put',
       contactType: 'familiar',
-      email: 'unit-put@gmail.com',
+      email: 'unit-web-put@gmail.com',
       phone: '53991039232'
     }) as IContactValidation;
   });
@@ -27,7 +27,7 @@ describe("Unit - Put contact", () => {
     const payload = {
       name,
       contactType: 'familiar',
-      email: 'unit-put@gmail.com',
+      email: 'unit-web-put@gmail.com',
       phone: '53991039232'
     }
     const response = await service.put(Number(contact.id), payload) as IContactValidation;
@@ -39,7 +39,7 @@ describe("Unit - Put contact", () => {
     const payload = {
       name,
       contactType: 'familiar',
-      email: 'unit-put@gmail.com',
+      email: 'unit-web-put@gmail.com',
       phone: '53991039232'
     }
     const response = await service.put(10, payload) as string;

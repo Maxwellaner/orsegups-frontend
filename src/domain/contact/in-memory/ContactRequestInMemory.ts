@@ -35,7 +35,12 @@ export default class ContactRequestInMemory implements IContactRequest {
   getAll(): Promise<IContactValidation[] | []> {
     return Promise.resolve(this.contacts);
   }
-  async delete(id: number): Promise<void> {
-    throw new Error("Method not implemented.");
+  delete(id: number): Promise<void | string> {
+    const contact = this.contacts.find(item => {
+      return id === item.id;
+    });
+    if (!contact) return Promise.resolve('Este contato não existe!');
+    this.contacts = this.contacts.filter(item => item.id !== contact.id);
+    return Promise.resolve();
   }
 }
