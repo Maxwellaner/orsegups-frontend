@@ -35,7 +35,7 @@ export default class ContactRequest implements IContactRequest {
       return error.response.data.message;
     }
   }
-  async delete(id: number): Promise<void> {
+  async delete(id: number): Promise<void | string> {
     try {
       return await axios.delete(`/contacts/${id}`);
     } catch(error: any) {

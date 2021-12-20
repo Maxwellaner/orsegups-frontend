@@ -17,13 +17,13 @@ describe("Unit - Get contact", () => {
     contactOne = await service.create({
       name: 'Unit get one',
       contactType: 'familiar',
-      email: 'unit-get-one@gmail.com',
+      email: 'unit-web-get-one@gmail.com',
       phone: '53991039232'
     }) as IContactValidation;
     contactTwo = await service.create({
       name: 'Unit get two',
       contactType: 'familiar',
-      email: 'unit-get-two@gmail.com',
+      email: 'unit-web-get-two@gmail.com',
       phone: '53991039232'
     }) as IContactValidation;
   });
